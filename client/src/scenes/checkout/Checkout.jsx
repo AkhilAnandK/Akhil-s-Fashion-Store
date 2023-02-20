@@ -91,6 +91,20 @@ const Checkout = () => {
 
   const handleFormSubmit = async (values, actions) => {
     setActiveStep(activeStep + 1);
+
+    // Copying the billing address to shipping address
+    if (isFirstStep && values.shippingAddress.isSameAddress) {
+      actions.setFieldValue("shippingAddress", {
+        ...values.billingAddress,
+        isSameAddress: true,
+      });
+    }
+
+    if (isSecondStep) {
+      makePayment(values);
+    }
+
+    actions.setTouched({});
   };
 
   async function makePayment(values) {}
