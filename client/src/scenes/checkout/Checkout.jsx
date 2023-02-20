@@ -5,6 +5,7 @@ import { useState } from "react";
 import * as yup from "yup";
 import { shades } from "../../theme";
 import Shipping from "./Shipping";
+import Payment from "./Payment";
 
 const initialValues = {
   billingAddress: {
@@ -137,6 +138,16 @@ const Checkout = () => {
             <form onSubmit={handleSubmit}>
               {isFirstStep && (
                 <Shipping
+                  values={values}
+                  errors={errors}
+                  touched={touched}
+                  handleBlur={handleBlur}
+                  handleChange={handleChange}
+                  setFieldValue={setFieldValue}
+                />
+              )}
+              {isSecondStep && (
+                <Payment
                   values={values}
                   errors={errors}
                   touched={touched}
